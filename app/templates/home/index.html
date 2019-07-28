@@ -1,0 +1,357 @@
+{% extends "home/layout.html" %}
+{% import "ui/home_page.html" as pg %}
+
+{% block css %}
+    {#    <style>#}
+    {#        a:link {#}
+    {#            color: #000000;#}
+    {#        }#}
+    {##}
+    {#        a:hover {#}
+    {#            color: #0066CC;#}
+    {#            text-decoration: none;#}
+    {#            font-size: 15px;#}
+    {#border: 1px solid #0066CC;#}{#padding-left: 8px;#}{#padding-right: 8px;#}{#padding-top: 5px;#}{#background-color: #DBE0E1;#}
+    {#        }#}
+    {##}
+    {#        a:visited {#}
+    {#color: #000000;#}{#text-decoration:none;#}{#font-size: 13px;#}{#border: 1px solid #B4BABC;#}{#padding-left: 8px;#}{#padding-right: 8px;#}{#padding-top: 5px;#}
+    {#        }#}
+    {##}
+    {#        a:active {#}
+    {#            color: #abb9d3;#}
+    {#            text-decoration: none;#}
+    {#            font-size: 13px;#}
+    {#border: 1px solid #0066CC;#}
+    {#            padding-right: 8px;#}
+    {#            padding-top: 5px;#}
+    {#        }#}
+    {##}
+    {##}
+    {#    </style>#}
+    {##}
+    {#    <link href="{{ url_for('static', filename='index-style/css/app.css') }}" rel="stylesheet" type="text/css"/>#}
+    {#    <script src="{{ url_for('static', filename='js/jquery-2.1.0.min.js') }}"></script>#}
+    {#    <script src="{{ url_for('static', filename='index-style/js/common.js') }}"></script>#}
+    {#    <script src="{{ url_for('static', filename='index-style/js/iconfont.js') }}"></script>    #}
+    {#    #}
+    <link href="http://person-movie.oss-cn-shenzhen.aliyuncs.com/static/index-style/css/app.css" rel="stylesheet"
+          type="text/css"/>
+    <script src="http://person-movie.oss-cn-shenzhen.aliyuncs.com/static/js/jquery-2.1.0.min.js"></script>
+    <script src="http://person-movie.oss-cn-shenzhen.aliyuncs.com/static/index-style/js/common.js"></script>
+    <script src="http://person-movie.oss-cn-shenzhen.aliyuncs.com/static/index-style/js/iconfont.js"></script>
+{% endblock %}
+
+{% block content %}
+    <!--热门电影-->
+
+    {#    轮播图#}
+    <section id="hotmovie" style="margin-top:76px;">
+        <div class="container">
+            <div class="row wow fadeInRight" data-wow-delay="0.6s">
+                <div class="row">
+                    <iframe style="padding-top: 18px" class="wow fadeIn" width="100%" height="350px" frameborder=0
+                            scrolling=no
+                            src="{{ url_for('home.animation') }}"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--热门电影-->
+    <div class="icon" style="padding-top: 13px">
+        <div class="container">
+            <section class="imain clearfix">
+                <div class="col-l">
+
+                    <div class="tv-hd">
+                        <h2>
+                            <svg class="iconf" aria-hidden="true">
+                                <use xlink:href="#icon-luxiang"></use>
+
+                            </svg>
+                            热门电影
+                        </h2>
+                        <div class="imore"><a href="{{ url_for('home.click_search') }}"> 查看更多</a></div>
+                    </div>
+
+                    <div class="tv-bd a_clist">
+                        <div class="aclcon1">
+                            <div class="aclcon1">
+
+                                <div class="tv-l">
+                                    <div class="tvhots">
+                                        <div class="v-pic">
+                                            <img alt="{{ movie_special.title }}" class="thumb"
+                                                 src="{{ url_for('static', filename='uploads/'+movie_special.logo) }}">
+                                            <div class="v-tips">{{ movie_special.length }}分钟</div>
+                                            <a href="{{ url_for('home.play', movie_id=movie_special.id) }}"
+                                               title="{{ movie_special.title }}"
+                                               class="v-playBtn"><i></i></a>
+                                        </div>
+                                        <div class="v-txt">
+                                            <p class="v-tit">
+                                                <em class="em-tit" style="width: 70%">
+                                                    <a href="{{ url_for('home.play', movie_id=movie_special.id) }}"
+                                                       title="{{ movie_special.title }}">{{ movie_special.title }}</a>
+                                                </em>
+                                                <em class="em-score" style="width: 30%; text-decoration: underline "><a
+                                                        href="{{ url_for('home.play', movie_id=movie_special.id) }}">去观看?</a></em>
+                                            </p>
+                                            <p class="s-des">上映地区：<span>{{ movie_special.area }}</span>&nbsp;
+                                            </p>
+                                            <p class="s-des">上映时间：<span>{{ movie_special.release_time }}</span>&nbsp;
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="tv-r">
+                                    <ul class="tv-list">
+                                        {% for movie in movie_list %}
+                                            <li>
+                                                <div class="v-pic">
+                                                    <img alt="{{ movie.title }}" class="thumb"
+                                                         src="{{ url_for('static', filename='uploads/'+movie.logo) }}">
+                                                    <div class="v-tips">BD1280高清中字</div>
+                                                    <a href="{{ url_for("home.play", movie_id=movie.id) }}"
+                                                       title="{{ movie.title }}"
+                                                       class="v-playBtn"><i></i></a>
+                                                </div>
+                                                <div class="v-txt">
+                                                <span class="v-tit"><a
+                                                        href="{{ url_for("home.play", movie_id=movie.id) }}"
+                                                        title="{{ movie.title }}">{{ movie.title }}</a></span>
+                                                </div>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-r">
+                    <div class="tv-hd">
+                        <h2>电影 • 排行榜</h2></div>
+                    <div class="tv-bd">
+                        <ul class="v-rank clearfix">
+                            {% for i in movie_top %}
+                                <li>
+                                    {#                                django 使用forloop.counter flask loop.index#}
+                                    <i class="i-rank_num">{{ loop.index }}</i><em
+                                        class="v-num">评论量：{{ i.commentnum }}</em>
+                                    <span class="v-tit">
+                                    <a href="{{ url_for('home.play', movie_id=i.id) }}"
+                                       title="{{ i.title }}">{{ i.title }}</a>
+                                    </span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+
+    <!--电影条件筛选-->
+    {#    <section id="movielist" style="padding-top: 20px;background-color: white">#}
+    {#        <div class="container">#}
+    {#            <div class="row wow fadeIn" data-wow-delay="0.6s">#}
+    {##}
+    {##}
+    {#                <div class="icon" style="padding-top: 15px">#}
+    {#                    <div class="container">#}
+    {#                        <ul class="select_list clearfix">#}
+    {#                            <li class="clearfix">#}
+    {#                                <span class="v-tit">标签：</span>#}
+    {#                                <p class="p_select">#}
+    {#                                    <a href="{{ url_for('home.index',page=1) }}?star={{ p['star'] }}&time={{ p['time'] }}&pm={{ p['pm'] }}&cm={{ p['cm'] }}"#}
+    {#                                       rel="" name="t" {% if p['tid']|string() == ''|string() %}#}
+    {#                                       class="all cur" {% endif %}>全部</a>#}
+    {#                                    {% for tag in tags %}#}
+    {#                                        <a href="{{ url_for('home.index',page=1) }}?tid={{ tag.id }}&star={{ p['star'] }}&time={{ p['time'] }}&pm={{ p['pm'] }}&cm={{ p['cm'] }}"#}
+    {#                                           name="t" {% if p['tid'] and p['tid']|string() == tag.id|string() %}#}
+    {#                                           class="all cur" {% endif %}#}
+    {#                                           rel="{{ tag.name }} " style="padding-top: 7px">{{ tag.name }}</a>#}
+    {#                                    {% endfor %}#}
+    {#                            </li>#}
+    {#                            <li>#}
+    {#                                <span class="v-tit">星级：</span>#}
+    {#                                <p class="p_select">#}
+    {#                                    <a href="{{ url_for('home.index',page=1) }}?tid={{ p['tid'] }}&time={{ p['time'] }}&pm={{ p['pm'] }}&cm={{ p['cm'] }}"#}
+    {#                                       rel="" name="r"{% if p['star']|string() == 0|string() %}#}
+    {#                                       class="all cur" {% endif %}>全部</a>#}
+    {#                                    {% for v in range(1,6) %}#}
+    {#                                        <a href="{{ url_for('home.index',page=1) }}?tid={{ p['tid'] }}&star={{ v }}&time={{ p['time'] }}&pm={{ p['pm'] }}&cm={{ p['cm'] }}"#}
+    {#                                           rel="大陆" name="r"#}
+    {#                                                {% if p['star']|string() == v|string() %}#}
+    {#                                           class="all cur" {% endif %}>{{ v }}<span#}
+    {#                                                style="font-weight: bolder">·</span>星</a>#}
+    {#                                        <a href="javascript:void(0)" rel="香港" name="r" class="default">香港</a>#}
+    {#                                    {% endfor %}#}
+    {#                            </li>#}
+    {#                            <li>#}
+    {#                                <span class="v-tit">年份：</span>#}
+    {#                                <p class="p_select">#}
+    {#                                    <a href="{{ url_for('home.index',page=1) }}?tid={{ p['tid'] }}&star={{ p['star'] }}&pm={{ p['pm'] }}&cm={{ p['cm'] }}"#}
+    {#                                       rel="" name="d" {% if p['time']|string() == 0|string() %}#}
+    {#                                       class="all cur" {% endif %}>全部</a>#}
+    {#                                    <a href="{{ url_for('home.index',page=1) }}?tid={{ p['tid'] }}&star={{ p['star'] }}&time=1&pm={{ p['pm'] }}&cm={{ p['cm'] }}"#}
+    {#                                       name="d" rel="2018" {% if p['time']|string() == 1|string() %}#}
+    {#                                       class="all cur" {% endif %}>最近上新</a>#}
+    {#                                    <a href="{{ url_for('home.index',page=1) }}?tid={{ p['tid'] }}&star={{ p['star'] }}&time=2&pm={{ p['pm'] }}&cm={{ p['cm'] }}"#}
+    {#                                       name="d" rel="2018" {% if p['time']|string() == 2|string() %}#}
+    {#                                       class="all cur" {% endif %}>更早之前</a>#}
+    {##}
+    {#                                </p>#}
+    {#                            </li>#}
+    {#                            <li class="mhide">#}
+    {#                                <span class="v-tit">热门：</span>#}
+    {#                                <p class="p_select">#}
+    {#                                    <a href="{{ url_for('home.index',page=1) }}?tid={{ p['tid'] }}&star={{ p['star'] }}&time={{ p['time'] }}&pm=0&cm={{ p['cm'] }}"#}
+    {#                                       rel="" name="l" {% if p['pm']|string() == 0|string() %}#}
+    {#                                       class="all cur" {% endif %}>全部</a>#}
+    {#                                    <a href="{{ url_for('home.index', page=1) }}?tid={{ p['tid'] }}&star={{ p['star'] }}&time={{ p['time'] }}&pm=1&cm={{ p['cm'] }}"#}
+    {#                                       rel="" name="l" {% if p['pm']|string() == 1|string() %}#}
+    {#                                       class="all cur" {% endif %}>从高到低</a>#}
+    {#                                    <a href="{{ url_for('home.index', page=1) }}?tid={{ p['tid'] }}&star={{ p['star'] }}&time={{ p['time'] }}&pm=2&cm={{ p['cm'] }}"#}
+    {#                                       rel="" name="l" {% if p['pm']|string() == 2|string() %}#}
+    {#                                       class="all cur" {% endif %}>从低到高</a>#}
+    {#                                </p>#}
+    {#                            </li>#}
+    {#                            <li class="mhide">#}
+    {#                                <span class="v-tit">评论：</span>#}
+    {#                                <p class="p_select">#}
+    {#                                    <a href="{{ url_for('home.index',page=1) }}?tid={{ p['tid'] }}&star={{ p['star'] }}&time={{ p['time'] }}&pm={{ p['pm'] }}&cm=0"#}
+    {#                                       rel="" name="l"  {% if p['cm']|string() == 0|string() %}#}
+    {#                                       class="all cur" {% endif %}>全部</a>#}
+    {##}
+    {#                                    <a href="{{ url_for('home.index', page=1) }}?tid={{ p['tid'] }}&star={{ p['star'] }}&time={{ p['time'] }}&pm={{ p['pm'] }}&cm=1"#}
+    {#                                       rel="" name="l" {% if p['cm']|string() == 1|string() %}#}
+    {#                                       class="all cur" {% endif %}>从高到低</a>#}
+    {#                                    <a href="{{ url_for('home.index', page=1) }}?tid={{ p['tid'] }}&star={{ p['star'] }}&time={{ p['time'] }}&pm={{ p['pm'] }}&cm=2"#}
+    {#                                       rel="" name="l"  {% if p['cm']|string() == 2|string() %}#}
+    {#                                       class="all cur" {% endif %}>从低到高</a>#}
+    {##}
+    {#                                </p>#}
+    {#                            </li>#}
+    {#                        </ul>#}
+    {#                    </div>#}
+    {#                </div>#}
+    {##}
+    {##}
+    {#                <div class="col-md-12 table-responsive">#}
+    {#                    <table class="table text-left table-bordered" id="movietags">#}
+    {#                        <tr>#}
+    {#                            <td style="width:10%;">电影标签</td>#}
+    {#                            <td style="width:90%;">#}
+    {#                                {% for v in tags %}#}
+    {#                                    <a href="{{ url_for('home.index',page=1) }}?tid={{ v.id }}&star={{ p['star'] }}&time={{ p['time'] }}&pm={{ p['pm'] }}&cm={{ p['cm'] }}"#}
+    {#                                       class="label " style="color:#0f0f0f;" id="{{ v.id }}"><span#}
+    {#                                            class="glyphicon glyphicon-tag"></span>&nbsp;{{ v.name }}</a>#}
+    {#                                    &nbsp;#}
+    {#                                {% endfor %}#}
+    {#                        </tr>#}
+    {#                        <tr>#}
+    {#                            <td>电影评分</td>#}
+    {#                            <td>#}
+    {#                                {% for v in range(1,6) %}#}
+    {#                                    <a href="{{ url_for('home.index',page=1) }}?tid={{ p['tid'] }}&star={{ v }}&time={{ p['time'] }}&pm={{ p['pm'] }}&cm={{ p['cm'] }}"#}
+    {#                                       class="label" style="color:#0f0f0f;" id="{{ v.id }}"><span#}
+    {#                                            class="glyphicon glyphicon-star"></span>&nbsp;{{ v }}星</a>#}
+    {#                                    &nbsp;#}
+    {#                                {% endfor %}#}
+    {#                            </td>#}
+    {#                        </tr>#}
+    {#                        <tr>#}
+    {#                            <td>上映时间</td>#}
+    {#                            <td>#}
+    {#                                <a href="{{ url_for('home.index',page=1) }}?tid={{ p['tid'] }}&star={{ p['star'] }}&time=1&pm={{ p['pm'] }}&cm={{ p['cm'] }}"#}
+    {#                                   class="label " style="color:#0f0f0f;" id="rece"><span#}
+    {#                                        class="glyphicon glyphicon-time"></span>&nbsp;最近</span>#}
+    {#                                </a>#}
+    {#                                &nbsp;#}
+    {#                                <a href="{{ url_for('home.index',page=1) }}?tid={{ p['tid'] }}&star={{ p['star'] }}&time=2&pm={{ p['pm'] }}&cm={{ p['cm'] }}"#}
+    {#                                   class="label " style="color:#0f0f0f;"><span#}
+    {#                                        class="glyphicon glyphicon-time"></span>&nbsp;更早</span>#}
+    {#                                </a>#}
+    {#                            </td>#}
+    {#                        </tr>#}
+    {#                        <tr>#}
+    {#                            <td>热门排序</td>#}
+    {#                            <td>#}
+    {#                                <a href="{{ url_for('home.index',page=1) }}?tid={{ p['tid'] }}&star={{ p['star'] }}&time={{ p['time'] }}&pm=1&cm={{ p['cm'] }}"#}
+    {#                                   class="label " style="color:#0f0f0f;"><span#}
+    {#                                        class="glyphicon glyphicon-arrow-down"></span>&nbsp;从高到底</a>#}
+    {#                                &nbsp;#}
+    {#                                <a href="{{ url_for('home.index',page=1) }}?tid={{ p['tid'] }}&star={{ p['star'] }}&time={{ p['time'] }}&pm=2&cm={{ p['cm'] }}"#}
+    {#                                   class="label " style="color:#0f0f0f;"><span#}
+    {#                                        class="glyphicon glyphicon-arrow-up"></span>&nbsp;从低到高</a>#}
+    {#                            </td>#}
+    {#                        </tr>#}
+    {#                        <tr>#}
+    {#                            <td>评论排序</td>#}
+    {#                            <td>#}
+    {#                                <a href="{{ url_for('home.index',page=1) }}?tid={{ p['tid'] }}&star={{ p['star'] }}&time={{ p['time'] }}&pm={{ p['pm'] }}&cm=1"#}
+    {#                                   class="label" style="color:#0f0f0f;"><span#}
+    {#                                        class="glyphicon glyphicon-arrow-down"></span>&nbsp;从高到底</a>#}
+    {#                                &nbsp;#}
+    {#                                <a href="{{ url_for('home.index',page=1) }}?tid={{ p['tid'] }}&star={{ p['star'] }}&time={{ p['time'] }}&pm={{ p['pm'] }}&cm=2"#}
+    {#                                   class="label" style="color:#0f0f0f;"><span#}
+    {#                                        class="glyphicon glyphicon-arrow-up"></span>&nbsp;从低到高</a>#}
+    {#                            </td>#}
+    {#                        </tr>#}
+    {#                        <tr>#}
+    {#                        <td>已选条件</td>#}
+    {#                        <td>#}
+    {#                            {% for k,v in explain.items() %}#}
+    {#                                {{ v }}#}
+    {#                            {% endfor %}#}
+    {#                        </td>#}
+    {#                        </tr>#}
+    {#                    </table>#}
+    {#                </div>#}
+    {#                <hr>#}
+    {#            电影列表#}
+    {#                {% for v in page_data.items %}#}
+    {#                    <div class="col-md-3">#}
+    {#                        <div class="movielist text-center">#}
+    {#                            <!--<img data-original="holder.js/262x166"#}
+    {#                                     class="img-responsive lazy center-block" alt="">-->#}
+    {#                            <a href="{{ url_for('home.play',movie_id=v.id) }}"><img#}
+    {#                                    src="{{ url_for('static',filename='uploads/'+v.logo) }}"#}
+    {#                                    class="img-responsive center-block"#}
+    {#                                    alt=""></a>#}
+    {#                            <div class="text-left" style="margin-left:auto;margin-right:auto;width:210px;">#}
+    {##}
+    {#                                <span style="line-height: 25px;margin-left:13px">{{ v.title }}</span><br>#}
+    {#                                <div style="margin-left: 13px">#}
+    {#                                    {% for val in range(1,v.star + 1) %}#}
+    {#                                        <span class="glyphicon glyphicon-star" style="color:#FFD119;"></span>#}
+    {#                                    {% endfor %}#}
+    {#                                    {% for val in range(1,5-v.star + 1) %}#}
+    {#                                        <span class="glyphicon glyphicon-star-empty" style="color:#FFD119;"></span>#}
+    {#                                    {% endfor %}#}
+    {#                                </div>#}
+    {#                            </div>#}
+    {#                            <a href="{{ url_for("home.play", movie_id=v.id) }}" class="btn btn-primary" target="_blank"#}
+    {#                               role="button"><span class="glyphicon glyphicon-play"></span>&nbsp;播放</a>#}
+    {#                        </div>#}
+    {#                    </div>#}
+    {#                {% endfor %}#}
+    {##}
+    {#            分页#}
+    {#                <div class="col-md-12" style="text-align: center">#}
+    {#                    {{ pg.page(page_data,'home.index') }}#}
+    {#                </div>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </section>#}
+    <!--电影列表-->
+{% endblock %}

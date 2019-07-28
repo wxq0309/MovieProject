@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='base/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='base/css/login.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='font-awesome-4.7.0/css/font-awesome.css') }}">
+
+    <script src="{{ url_for('static',filename='js/jquery.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/bootstrap.js') }}"></script>
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>用户登陆</title>
+
+    <style>
+        .navbar-brand > img {
+            display: inline;
+        }
+
+    </style>
+    <style>
+        .media {
+            padding: 3px;
+            border: 1px solid #ccc
+        }
+
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <!--小屏幕导航按钮和logo-->
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="{{ url_for('home.index', page=1 ) }}" class="navbar-brand" style="width:250px;">
+                <img src="{{ url_for('static', filename='base/images/logo.png') }}" style="height:30px;">&nbsp;嘿，看视频
+            </a>
+        </div>
+        <!--小屏幕导航按钮和logo-->
+        <!--导航-->
+
+        <div class="navbar-collapse collapse" style="height: 73px">
+
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="curlink" href="{{ url_for("home.show_recommend",page=1) }}"><i class="fa fa-hand-paper-o"
+                                                                                             aria-hiddens="true"></i>&nbsp;用户推荐</a>
+                </li>
+                <li>
+                    <a class="curlink" href="{{ url_for('home.index', page=1) }}"><span
+                            class="glyphicon glyphicon-film"></span>&nbsp;电影</a>
+                </li>
+                {% if session['user'] %}
+
+                {% else %}
+                    <li hidden="hidden">
+                        <a class="curlink" href="{{ url_for('home.login') }}"><span
+                                class="glyphicon glyphicon-log-in"></span>&nbsp;登录</a>
+                    </li>
+                    <li hidden="hidden">
+                        <a class="curlink" href="{{ url_for('home.register') }}"><span
+                                class="glyphicon glyphicon-plus"></span>&nbsp;注册</a>
+                    </li>
+                {% endif %}
+                <li>
+                    <a class="curlink" href="{{ url_for('home.logout') }}"><span
+                            class="glyphicon glyphicon-log-out"></span>&nbsp;退出</a>
+                </li>
+                <li>
+                    <a class="curlink" href="{{ url_for("home.user") }}"><span class="glyphicon glyphicon-user"></span>&nbsp;用户中心</a>
+                </li>
+            </ul>
+        </div>
+        <!--导航-->
+
+    </div>
+</nav>
+
+<div>
+    <div class="be-content pren">
+
+        <div class="ioc_text">
+            <img src="http://person-movie.oss-cn-shenzhen.aliyuncs.com/static/base/images/logo.png" alt="" style="height:70px;">
+            <span>请登录您的用户</span>
+        </div>
+        {% for message in get_flashed_messages(with_categories=True) %}
+            <div class="alert alert-{{ message[0] }}" style="text-align:center;">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{ message[1] }}
+            </div>
+        {% endfor %}
+
+        <div>
+            <form method="post">
+                {{ form.csrf_token }}
+                <div class="br-content">
+
+                    <div class="input-group mb-4 bootint">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-user" aria-hidden="true"> &nbsp 账户</i></span>
+                        </div>
+                        {{ form.name }}
+                        {#                        <input type="text" class="form-control" placeholder="请输入用户名">#}
+                    </div>
+
+                    <div class="input-group mb-4 bootint">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-unlock-alt"> &nbsp 密码</i></span>
+                        </div>
+                        {{ form.pwd }}
+                        {#                        <input type="password" class="form-control" placeholder="请输入密码">#}
+                    </div>
+
+                    <div class="br-text">
+                        <p>
+                            <span>没有账号?</span>
+                            <a href="{{ url_for("home.register") }}">去注册</a>
+                        </p>
+                    </div>
+                    <div style="padding-top: 10px">
+                        {{ form.submit }}
+                        {#                        <input type="button" class="btn" value="登录">#}
+                    </div>
+                    <div class="be-con">
+                        <span>Copyright © 2018 - 2019 系统登陆</span>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+{#<script type="text/javascript">#}
+{#    $(document).ready(function () {#}
+{#        var e = json.data();#}
+{#        alert(e)#}
+{#    })#}
+{#</script>#}
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+
+    <link rel='stylesheet prefetch' href='{{ url_for('static', filename='slider/css/slick.css') }}'>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='slider/css/style.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='layui/css/layui.css') }}" media="all">
+
+</head>
+
+<body>
+{#<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"#}
+{#           width="0" height="0" viewBox="0 0 1366 768" xml:space="preserve">#}
+{#  <!-- Gaussian blur filter progression to animate -->#}
+{#  <defs>#}
+{#    <filter id="blur0">#}
+{#      <feGaussianBlur in="SourceGraphic" stdDeviation="0 0" />#}
+{#    </filter>#}
+{#    <filter id="blur1">#}
+{#      <feGaussianBlur in="SourceGraphic" stdDeviation="5 0" />#}
+{#    </filter>#}
+{#    <filter id="blur2">#}
+{#      <feGaussianBlur in="SourceGraphic" stdDeviation="12 0" />#}
+{#    </filter>#}
+{#    <filter id="blur3">#}
+{#      <feGaussianBlur in="SourceGraphic" stdDeviation="20 0" />#}
+{#    </filter>#}
+{#    <filter id="blur4">#}
+{#      <feGaussianBlur in="SourceGraphic" stdDeviation="35 1" />#}
+{#    </filter>#}
+{#    <filter id="blur5">#}
+{#      <feGaussianBlur in="SourceGraphic" stdDeviation="50 1" />#}
+{#    </filter>#}
+{#  </defs>#}
+{#</svg>#}
+
+<div class="slider" id="test1">
+    {#    <div carousel-item>#}
+    {% for i in data %}
+        <div>
+            <img src="{{ url_for('static', filename='uploads/'+i.logo) }}" alt="{{ i.name }}">
+        </div>
+    {% endfor %}
+    {#    </div>#}
+</div>
+
+<script src='{{ url_for('static', filename='slider/js/jquery.min.js') }}'></script>
+<script src='{{ url_for('static', filename='slider/js/slick.min.js') }}'></script>
+<script src="{{ url_for('static', filename='slider/js/index.js') }}"></script>
+{##}
+{#<script src="{{ url_for('static', filename='layui/layui.js') }}">#}
+{#    layui.user#}
+{##}
+{#</script>#}
+</body>
+</html>

@@ -1,0 +1,47 @@
+worker_processes  1;
+
+events {
+    worker_connections  262140;
+}
+
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+    sendfile        on;
+    keepalive_timeout  65;
+    upstream movie {
+        server 120.78.202.88:5000;
+    }
+    server {
+        listen       80;
+        server_name  www.hjx.pub;
+
+        location / {
+            root   html;
+            index  index.html index.htm;
+            proxy_pass http://movie;
+        }
+
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+
+        location ~ \.flv {
+            flv;
+            limit_conn addr 4;
+            limit_rate 1024k;
+            rewrite ^/static/uploads/(.+?)\.flv$ /movie_project/app/static/uploads/$1.flv permanent;
+        }
+
+        location ~ \.mp4 {
+            mp4;
+            limit_conn addr 4;
+            limit_rate 1024k;
+            rewrite ^/static/uploads/(.+?)\.flv$ /movie_project/app/static/uploads/$1.flv permanent;
+        }
+    }
+
+
+}

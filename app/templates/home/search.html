@@ -1,0 +1,82 @@
+{% extends 'home/home.html' %}
+{% import "ui/home_page.html" as pg %}
+
+{% block css %}
+    <style>
+
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container" style="margin-top:25px">
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb" style="margin-top:6px;">
+                    <li>与"{{ key }}"有关的电影，共{{ count }}部</li>
+                </ol>
+            </div>
+            <div class="col-md-12">
+                {% for movie in page_data.items %}
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="{{ url_for('home.play', movie_id=movie.id) }}">
+                                <img class="media-object" src="{{ url_for('static', filename='uploads/'+ movie.logo) }}"
+{#                                     src="http://person-movie.oss-cn-shenzhen.aliyuncs.com/static/uploads/{{ movie.logo }}"#}
+                                     alt="{{ movie.title }}" style="width: 100px;height: 100px">
+                            </a>
+                        </div>
+
+                        <div class="media-body">
+                            <div><h4 class="media-heading"><a
+                                    href="{{ url_for("home.play", movie_id=movie.id) }}">{{ movie.title }}</a></h4>
+                            </div>
+                            <span>
+                            <div style="display: inline;margin-right: 600px">发布时间：{{ movie.addtime }}</div>
+                            <div style="display: inline">上映地区：{{ movie.area }}</div>
+                            </span>
+
+                            <p style="margin-right: 110px;">简介：{{ movie.info }}</p>
+                            {#                            <div>#}
+                            {#                                <a href="{{ url_for("home.play", movie_id=movie.id) }}"#}
+                            {#                                    class="label label-primary pull-right"><span#}
+                            {#                                    class="glyphicon glyphicon-play"#}
+                            {#                                    style="text-align: center;margin: 0 auto;">播放影片</span></a>#}
+                            {#                            </div>#}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+
+            <div class="col-md-12 text-center">
+                {{ pg.page(page_data, "home.search") }}
+                {#                <nav aria-label="Page navigation">#}
+                {#                    <ul class="pagination">#}
+                {#                        <li>#}
+                {#                            <a href="#" aria-label="First">#}
+                {#                                <span aria-hidden="true">首页</span>#}
+                {#                            </a>#}
+                {#                        </li>#}
+                {#                        <li>#}
+                {#                            <a href="#" aria-label="Previous">#}
+                {#                                <span aria-hidden="true">上一页</span>#}
+                {#                            </a>#}
+                {#                        </li>#}
+                {#                        <li><a href="#">1&nbsp;/&nbsp;10</a></li>#}
+                {#                        <li>#}
+                {#                            <a href="#" aria-label="Next">#}
+                {#                                <span aria-hidden="true">下一页</span>#}
+                {#                            </a>#}
+                {#                        </li>#}
+                {#                        <li>#}
+                {#                            <a href="#" aria-label="Last">#}
+                {#                                <span aria-hidden="true">尾页</span>#}
+                {#                            </a>#}
+                {#                        </li>#}
+                {#                    </ul>#}
+                {#                </nav>#}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

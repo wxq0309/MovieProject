@@ -1,0 +1,91 @@
+<div class="col-md-3">
+    <div class="list-group">
+        <a id="m-1" href="{{ url_for('home.user') }}" class="list-group-item">
+            <span class="glyphicon glyphicon-user"></span>&nbsp;用户中心
+        </a>
+        <a id="m-2" href="{{ url_for('home.pwd') }}" class="list-group-item">
+            <span class="glyphicon glyphicon-lock"></span>&nbsp;修改密码
+        </a>
+        <a id="m-3" href="{{ url_for('home.comments') }}" class="list-group-item">
+            <span class="glyphicon glyphicon-comment"></span>&nbsp;评论记录
+        </a>
+        <a id="m-4" href="{{ url_for('home.loginlog') }}" class="list-group-item">
+            <span class="glyphicon glyphicon-calendar"></span>&nbsp;登录日志
+        </a>
+        <a id="m-5" href="{{ url_for('home.moviecol',page=1) }}" class="list-group-item">
+            <span class="glyphicon glyphicon-heart"></span>&nbsp;收藏电影
+        </a>
+        <a id="m-5" href="{{ url_for("home.my_recommend") }}" class="list-group-item">
+            <span class="glyphicon glyphicon-heart"></span>&nbsp;我的推荐
+        </a>
+    </div>
+</div>
+
+{#<div class="col-md-3">#}
+{#    <div class="list-group">#}
+{#        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">#}
+{#            <legend>面板嵌套</legend>#}
+{#        </fieldset>#}
+{#        <div class="layui-collapse" lay-accordion="">#}
+{#            <div class="layui-colla-item">#}
+{#                <h2 class="layui-colla-title">文豪</h2>#}
+{#                <div class="layui-colla-content layui-show">#}
+{##}
+{#                    <div class="layui-collapse" lay-accordion="">#}
+{#                        <div class="layui-colla-item">#}
+{#                            <h2 class="layui-colla-title">唐代</h2>#}
+{#                            <div class="layui-colla-content layui-show">#}
+{##}
+{#                                <div class="layui-collapse" lay-accordion="">#}
+{#                                    <div class="layui-colla-item">#}
+{#                                        <h2 class="layui-colla-title">杜甫</h2>#}
+{#                                        <div class="layui-colla-content layui-show">#}
+{#                                            伟大的诗人#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                    <div class="layui-colla-item">#}
+{#                                        <h2 class="layui-colla-title">李白</h2>#}
+{#                                        <div class="layui-colla-content">#}
+{#                                            <p>据说是韩国人</p>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                    <div class="layui-colla-item">#}
+{#                                        <h2 class="layui-colla-title">王勃</h2>#}
+{#                                        <div class="layui-colla-content">#}
+{#                                            <p>千古绝唱《滕王阁序》</p>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                </div>#}
+{##}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="layui-colla-item">#}
+{#                            <h2 class="layui-colla-title">宋代</h2>#}
+{#                            <div class="layui-colla-content">#}
+{#                                <p>比如苏轼、李清照</p>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="layui-colla-item">#}
+{#                            <h2 class="layui-colla-title">当代</h2>#}
+{#                            <div class="layui-colla-content">#}
+{#                                <p>比如贤心</p>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="layui-colla-item">#}
+{#                <h2 class="layui-colla-title">科学家</h2>#}
+{#                <div class="layui-colla-content">#}
+{#                    <p>伟大的科学家</p>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="layui-colla-item">#}
+{#                <h2 class="layui-colla-title">艺术家</h2>#}
+{#                <div class="layui-colla-content">#}
+{#                    <p>浑身散发着艺术细胞</p>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}

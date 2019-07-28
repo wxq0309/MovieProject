@@ -1,0 +1,66 @@
+{% extends 'home/home.html' %}
+{% import "ui/home_page.html" as pg %}
+
+
+{% block content %}
+
+    <div style="font-size: 20px;text-align: center">
+    <span>客官，您搜索的电影不存在哦！请填下表向站长进行电影推荐</span>
+    </div>
+{#    {% for msg in get_flashed_messages() %}#}
+{#        <span style="color: red">{{ msg }}</span>#}
+{#    {% endfor %}#}
+    <form class="form-horizontal" style="padding-top: 20px;" method="post">
+        {{ form.csrf_token }}
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">{{ form.title.label }}</label>
+            <div class="col-sm-10">
+                {#                <input type="email" class="form-control" id="inputEmail3" placeholder="推荐电影名称">#}
+                {{ form.title }}
+            </div>
+        </div>
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">{{ form.protagonist.label }}</label>
+            <div class="col-sm-10">
+                {#                <input type="email" class="form-control" id="inputEmail3" placeholder="推荐电影名称">#}
+                {{ form.protagonist }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">{{ form.info.label }}</label>
+            <div class="col-sm-10">
+                {{ form.info }}
+                {#                <input type="password" class="form-control" id="inputPassword3" placeholder="电影简介">#}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">{{ form.release_time.label }}</label>
+            <div class="col-sm-10">
+                {{ form.release_time }}
+                {#                <input type="password" class="form-control" id="inputPassword4" placeholder="上映时间">#}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">{{ form.area.label }}</label>
+            <div class="col-sm-10">
+                {{ form.area }}
+                {#                <input type="password" class="form-control" id="inputPassword5" placeholder="上映地区">#}
+            </div>
+        </div>
+        {#        <div class="form-group">#}
+        {#            <label for="inputPassword3" class="col-sm-2 control-label">{{  }}</label>#}
+        {#            <div class="col-sm-10">#}
+        {#                <input type="password" class="form-control" id="inputPassword6" placeholder="电影标签">#}
+        {#            </div>#}
+        {#        </div>#}
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                {{ form.submit }}
+                {#                <button type="submit" class="btn btn-default">确认推荐</button>#}
+            </div>
+        </div>
+    </form>
+
+{% endblock %}
+
+

@@ -1,0 +1,87 @@
+{% extends 'admin/admin.html'%}
+{% import "ui/page.html" as pg %}
+
+{% block content %}
+        <section class="content-header">
+            <h1>个人电影网</h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> 电影管理</a></li>
+                <li class="active">电影列表</li>
+            </ol>
+        </section>
+        <section class="content" id="showcontent">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <h3 class="box-title">电影列表</h3>
+{#                            <div class="box-tools">#}
+{#                                <div class="input-group input-group-sm" style="width: 150px;">#}
+{#                                    <input type="text" name="table_search" class="form-control pull-right"#}
+{#                                           placeholder="请输入关键字...">#}
+{##}
+{#                                    <div class="input-group-btn">#}
+{#                                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i>#}
+{#                                        </button>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+                        </div>
+                        <div class="box-body table-responsive no-padding">
+                            <table class="table table-hover">
+                                <tbody>
+                                <tr>
+                                    <th>编号</th>
+                                    <th>片名</th>
+                                    <th>片长</th>
+                                    <th>标签</th>
+                                    <th>地区</th>
+                                    <th>星级</th>
+                                    <th>播放数量</th>
+                                    <th>评论数量</th>
+                                    <th>上映时间</th>
+                                    <th>操作事项</th>
+                                </tr>
+
+                                {% for i in page_data.items %}
+                                <tr>
+                                    <td>{{ i.id }}</td>
+                                    <td>{{ i.title }}</td>
+                                    <td>{{ i.length }}</td>
+                                    <td>{{ i.tag_id }}</td>
+                                    <td>{{ i.area }}</td>
+                                    <td>{{ i.playnum }}</td>
+                                    <td>{{ i.commentnum }}</td>
+                                    <td>{{ i.realease_time }}</td>
+                                    <td>{{ i.addtime }}</td>
+                                    <td>
+                                        <a class="label label-success" href="{{ url_for("admin.movie_edit", movieid=i.id) }}">编辑</a>
+                                        &nbsp;
+                                        <a class="label label-danger" href="{{ url_for("admin.movie_del", movieid=i.id) }}">删除</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="box-footer clearfix">
+                            <ul class="pagination pagination-sm no-margin pull-right">
+                                {{ pg.page(page_data, "admin.movie_list") }}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--内容-->
+ {% endblock %}
+
+{% block js %}
+    <script>
+        $(document).ready(function () {
+            $("#cate-3").addClass("active");
+            $("#cate-3-1").addClass("active");
+            $("#cate-3-2").addClass("active");
+        });
+    </script>
+{% endblock %}

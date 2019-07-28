@@ -1,0 +1,57 @@
+{% extends 'admin/admin.html'%}
+
+{% block content %}
+    <section class="content-header">
+        <h1>个人电影网</h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> 标签管理</a></li>
+            <li class="active">添加标签</li>
+        </ol>
+    </section>
+    <section class="content" id="showcontent">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">添加标签</h3>
+                        </div>
+
+                        <form role="form" method="POST">
+                            {{ form.csrf_token }}
+                            <div class="box-body">
+                                <div class="form-group">
+
+                                    {% for msg in form.name.errors %}
+                                    <span style="color: red">{{ msg }}</span>
+                                    {% endfor %}
+
+                                    <label for="input_name">{{ form.label }}</label>
+                                    {{ form.name }}
+{#                                    <input type="text" class="form-control" id="input_name" placeholder="请输入标签名称！">#}
+                                </div>
+                            </div>
+                            <div class="box-footer">
+                                {{ form.submit }}
+{#                                <button type="submit" class="btn btn-primary">添加</button>#}
+                                {% for i in get_flashed_messages() %}
+                                     <span style="color: red">{{ i }}</span>
+                                {% endfor %}
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock %}
+
+{% block js %}
+    <script>
+        $(document).ready(function () {
+            $("#cate-2").addClass("active");
+            {#$("#cate-1-1").addClass("active");#}
+            $("#cate-2-1").addClass("active");
+            $("#cate-2-2").addClass("active");
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="{{ url_for('static', filename='ueditor/ueditor.config.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='ueditor/ueditor.all.js') }}"></script>
+</head>
+<body>
+<div style="width: 80%;margin: auto">
+    <form action="{{ url_for("home.advertise") }}" method="post">
+        <input type="text" placeholder="请输入广告标题">
+        <script id="container" name="content" type="text/plain">广告内容</script>
+    </form>
+</div>
+<script type="text/javascript">
+    var ue = UE.getEditor('container');
+</script>
+</body>
+</html>

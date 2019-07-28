@@ -1,0 +1,59 @@
+{% extends 'home/home.html' %}
+{% import "ui/pagination.html" as pg %}
+
+{% block css %}
+    <style>
+
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container" style="margin-top:25px">
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb" style="margin-top:6px;">
+                    用户推荐的电影如下：
+
+                    <span style="margin-left: 850px"><a
+                            href="{{ url_for("home.user_recommend",page=1) }}">我也去推荐?</a></span>
+                </ol>
+            </div>
+            <div class="col-md-12">
+                {% for movie in data.items %}
+                    <div class="media">
+                        <div class="media-left">
+                            {#                            <a href="{{ url_for('home.play', movie_id=movie.id) }}">#}
+                            {#                                <img class="media-object"#}
+                            {#                                     src="{{ url_for('static', filename='uploads/' + movie.logo) }}"#}
+                            {#                                     alt="{{ movie.title }}" style="width: 100px;height: 100px">#}
+                            {#                            </a>#}
+                        </div>
+
+                        <div class="media-body">
+                            <div><h4 class="media-heading">{{ movie.title }}</h4>
+                            </div>
+                            <span>
+                            <div style="display: inline;margin-right: 600px">上映时间：{{ movie.addtime }}</div>
+                            <div style="display: inline">上映地区：{{ movie.area }}</div>
+                            </span>
+                            <br>
+                            <span>
+                            <div style="display: inline;margin-right: 600px">电影简介：{{ movie.info|truncate(10,killwords=True)|default("无") }}</div>
+                                <br>
+                            <div style="display: inline">主演：{{ movie.protagonist|default("无") }}</div>
+                            </span>
+                            <br>
+
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col-md-12 text-center">
+                {{ pg.aa(data, "home.show_recommend") }}
+            </div>
+
+
+        </div>
+    </div>
+{% endblock %}
+
