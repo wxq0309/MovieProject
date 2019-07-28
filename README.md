@@ -5,4 +5,4 @@
    利用Centos、Ningx、Gunicorn技术进行部署
 3. 项目前端页面利用原生H5、JS、JQuery和Vue组件进行开发
 4. 项目结构： 项目可分为三大部分：app template config。其中 app中包含电影管理后台admin应用和前端展示的home应用的后端实现代码。config文件为项目的基本    配置文件。template文件为前端页面夹。
-    
+5. 项目中含有sql文件，只需要通过source命令将数据导入即可在本地测试。  
